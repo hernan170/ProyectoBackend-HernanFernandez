@@ -17,7 +17,8 @@ router.get('/', async (req, res) => {
     }  
 });
 
-router.get('/:pid', async (req, res) => { 
+
+router.get('/:pid', async (req, res) => {
     const { pid } = req.params;
     try {
         const product = await productManager.getProductById(pid);
@@ -31,6 +32,7 @@ router.get('/:pid', async (req, res) => {
     }    
 });
 
+
 router.post('/', async (req, res) => {
     const productData = req.body;
     try {
@@ -42,6 +44,7 @@ router.post('/', async (req, res) => {
     }
 
 });
+
 
 router.put('/:pid', async (req, res) => {
     const { pid } = req.params;
@@ -58,6 +61,7 @@ router.put('/:pid', async (req, res) => {
         res.status(400).json({status:"error", message: error.message });
     }
 });  
+
 
 router.delete('/:pid', async (req, res) => {
     const { pid } = req.params;
