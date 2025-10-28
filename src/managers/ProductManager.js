@@ -1,20 +1,21 @@
 import * as fs from 'fs';
 import { randomUUID } from 'crypto';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-
-const __dirname = path.resolve();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default class ProductManager {
     constructor(relativePath) {
-        this.path = path.join(__dirname, relativePath);
+        this.path = path.join(__dirname, '..', '..', relativePath);
     }
 
     async readProducts() {
         try {
             if (fs.existsSync(this.path)) {
                 const data = await fs.promises.readFile(this.path, 'utf-8');
-                return JSON.perse(data);
+                return JSON.parse(data);
             }
             return [];
         } catch (error) {
@@ -25,6 +26,8 @@ export default class ProductManager {
 
     async writeProducts(products) {
         try {
+            const dir = path.dirname(this.path);
+            await fs.promises.mkdir(dir, { recursive: true });
             await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
         } catch (error) {
             console.error("Error al escribir productos:", error);
@@ -33,14 +36,14 @@ export default class ProductManager {
     }
 
 
-    async getProductos() {
+    async getProducts() {
         return await this.readProducts();
     }
 
 
     async getProductById(pid) {
         const products = await this.readProducts();
-        const product = products.find(p => p. id ===pid);
+        const product = products.find(p => p.id === pid);
         return product;
     }
 
@@ -62,13 +65,15 @@ export default class ProductManager {
             title,
             description,
             code,
-            price: Number(stock),
+            price: Number(price),
+            status: true,
+            stock: Number(stock),
             category,
             thumbnails: thumbnails || [],
         };
 
         products.push(newProduct);
-        await this.writeProducts(Products);
+        await this.writeProducts(products);
         return newProduct;
     
     }
