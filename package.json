@@ -19,6 +19,8 @@
     "bcrypt": "6.0.0",
     "cors": "2.8.5",
     "express": "5.1.0",
-    "uuid": "^13.0.0"
+    "express-handlebars": "8.0.3",
+    "socket.io": "4.8.1",
+    "uuid": "13.0.0"
   }
 }
