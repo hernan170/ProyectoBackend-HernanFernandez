@@ -1,37 +1,41 @@
-const { Router } = require('express')
-const ProductManager = require('../ProductManager.')
+import { Router } from 'express';
+import ProductManager from '../ProductManager.js';
 
-const viewsRouter = Router()
-const productManager = new ProductManager()
+const router = Router();
 
+const productManager = new ProductManager('src/data/products.json');
 
-viewsRouter.get('/', async (req, res) => {
-  try {
-    const products = await productManager.getProducts()
-    res.render('home', {
-        title: 'Lista de Productos (Home',
-        products: products,
-        hasProducts: products.length > 0
-    });
-  } catch (error) {
-    console.error('Error al renderizar home:', error);
-    res.status(500).render('error', { message: 'No se pudo cargar la lista de productos'})
-  }
-
-});
-
-viewsRouter.get('realTimeProducts', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const products = await productManager.getProducts()
-        res.render('realTimeProducts', {
-            title: 'Productos en tiempo real',
-            products: products,
-            hasProducts: products.length > 0
+        const products = await productManager.getProducts();
+
+       
+        res.render('home', {
+            title: "Lista de Productos Estática",
+            products: products, // Array de productos para el template
+       
         });
     } catch (error) {
-        console.error('Error al rnderizar realTimeProducts:', error)
-        res.status(500).render('error', { message: 'No se pudo cargar la vista de tiempo real.'})
+        console.error("Error al obtener productos para la vista home:", error);
+        res.status(500).send("Error interno del servidor al cargar la vista.");
     }
 });
 
-module.esports = viewsRouter;
+
+router.get('/realtimeproducts', async (req, res) => {
+    try {
+        const products = await productManager.getProducts();
+
+        res.render('realTimeProducts', {
+            title: "Productos en Tiempo Real",
+            products: products, 
+            
+        });
+    } catch (error) {
+        console.error("Error al obtener productos para la vista realTimeProducts:", error);
+        res.status(500).send("Error interno del servidor al cargar la vista en tiempo real.");
+    }
+});
+
+export default router;
+

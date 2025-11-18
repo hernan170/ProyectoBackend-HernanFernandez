@@ -1,0 +1,76 @@
+<div class="container my-5">
+    <h1 class="mb-4 text-center">Gestión de Productos en Tiempo Real (Socket.io)</h1>
+    <p class="text-center text-muted">Los cambios realizados aquí se reflejarán instantáneamente en todos los clientes conectados.</p>
+    <div class="card shadow-sm mb-5 border-success">
+        <div class="card-header bg-success text-white">
+            <h5>Agregar Nuevo Producto</h5>
+        </div>
+        <div class="card-body">
+            <form id="addProductForm">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Título</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Ej: Café Americano" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="price" class="form-label">Precio</label>
+                        <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="Ej: 4.99" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="number" class="form-control" id="stock" name="stock" value="10" placeholder="Ej: 50">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="code" class="form-label">Código</label>
+                        <input type="text" class="form-control" id="code" name="code" placeholder="Ej: CAFE001" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="category" class="form-label">Categoría</label>
+                        <input type="text" class="form-control" id="category" name="category" value="Bebidas" placeholder="Ej: Bebidas">
+                    </div>
+                    <div class="col-12">
+                        <label for="description" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="description" name="description" placeholder="Breve descripción del producto."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success mt-4 w-100">
+                    <i class="fas fa-plus-circle me-2"></i> Crear Producto
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="card shadow-sm mb-5 border-danger">
+        <div class="card-header bg-danger text-white">
+            <h5>Eliminar Producto por ID (Manual)</h5>
+        </div>
+        <div class="card-body">
+            <form id="deleteProductForm">
+                <div class="input-group">
+                    <input type="number" class="form-control" placeholder="ID del producto a eliminar (ej: 3)" id="productIdToDelete" required>
+                    <button class="btn btn-danger" type="submit">Eliminar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <h2 class="mt-5 mb-3 text-primary">Inventario Actualizado</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Código</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+            <tbody id="products-list">
+                <tr><td colspan="6" class="text-center">Esperando datos del servidor...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realTimeProducts.js"></script>
+ 
