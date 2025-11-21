@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
        
         res.render('home', {
             title: "Lista de Productos Estática",
-            products: products, // Array de productos para el template
+            products: products, 
        
         });
     } catch (error) {

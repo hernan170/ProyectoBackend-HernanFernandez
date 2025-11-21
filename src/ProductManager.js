@@ -7,20 +7,29 @@ const __dirname = path.dirname(__filename);
 
 class ProductManager {
     constructor(filePath) { 
-        this.path = path.join(__dirname, filePath.replace('src/', '')); 
+        this.path = path.join(__dirname, '..', filePath); 
         this.lastId = 0;
         this.init(); 
     }
 
     async init() {
         try {
+            const dirPath = path.dirname(this.path);
+            
+           
+            await fs.mkdir(dirPath, { recursive: true });
             await fs.access(this.path);
+            
             const products = await this.readProductsFile();
             if (products.length > 0) {
                 this.lastId = Math.max(...products.map(p => p.id));
             }
         } catch (error) {
-            await fs.writeFile(this.path, JSON.stringify([], null, 2));
+            if (error.code === 'ENOENT') {
+                 await fs.writeFile(this.path, JSON.stringify([], null, 2));
+            } else {
+                console.error("Error al inicializar ProductManager:", error);
+            }
         }
     }
 
@@ -90,7 +99,7 @@ class ProductManager {
 
         
         delete updatedFields.id;
-       
+        
         if (updatedFields.code && products.some((p, i) => p.code === updatedFields.code && i !== index)) {
             throw new Error(`El código '${updatedFields.code}' ya está en uso por otro producto.`);
         }

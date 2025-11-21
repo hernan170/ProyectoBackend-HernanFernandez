@@ -1,0 +1,100 @@
+[  {
+    "title": "Balón Oficial Adidas Finale 2025",
+    "description": "Balón de fútbol de alta calidad, utilizado en los partidos de la fase de grupos de la UEFA Champions League 2024/2025. Talla 5.",
+    "price": 150.00,
+    "code": "BL001UCL",
+    "stock": 50,
+    "category": "Balones",
+    "thumbnails": ["url_imagen_balon_ucl.jpg"],
+    "status": true
+  },
+  {
+    "title": "Camiseta Local Argentina 2024",
+    "description": "Jersey oficial de la selección Argentina para la Copa América, con tecnología de absorción de humedad Heat.RDY.",
+    "price": 95.00,
+    "code": "CMT002ARG",
+    "stock": 120,
+    "category": "Indumentaria",
+    "thumbnails": ["url_imagen_camiseta_arg.jpg"],
+    "status": true
+  },
+  {
+    "title": "Zapatillas Nike Mercurial Vapor 15 Elite",
+    "description": "Botines de fútbol profesionales diseñados para velocidad. Suela FG para césped natural firme. Color naranja/negro.",
+    "price": 280.00,
+    "code": "ZPT003NKE",
+    "stock": 30,
+    "category": "Calzado",
+    "thumbnails": ["url_imagen_zapatillas_nike.jpg"],
+    "status": true
+  },
+  {
+    "title": "Guantes de Portero Puma Future Z One",
+    "description": "Guantes de alta adherencia y corte negativo para un contacto óptimo con el balón. Tallas 8 a 11.",
+    "price": 75.00,
+    "code": "GTE004PMA",
+    "stock": 45,
+    "category": "Accesorios",
+    "thumbnails": ["url_imagen_guantes_puma.jpg"],
+    "status": true
+  },
+  {
+    "title": "Espilleras de Protección Canillera",
+    "description": "Canilleras ligeras y ergonómicas con protección dura y acolchado de EVA para máxima comodidad.",
+    "price": 25.00,
+    "code": "ESP005PRO",
+    "stock": 200,
+    "category": "Accesorios",
+    "thumbnails": ["url_imagen_canilleras.jpg"],
+    "status": true
+  },
+  {
+    "title": "Chaqueta de Entrenamiento Real Madrid",
+    "description": "Chaqueta de chándal oficial para entrenamiento, color azul marino, temporada 2024/2025.",
+    "price": 85.00,
+    "code": "CHQ006RMD",
+    "stock": 70,
+    "category": "Indumentaria",
+    "thumbnails": ["url_imagen_chaqueta_rmd.jpg"],
+    "status": true
+  },
+  {
+    "title": "Balón Adidas Tango Histórico (Réplica)",
+    "description": "Réplica del icónico balón Adidas Tango de los mundiales. Ideal para coleccionistas o uso recreativo.",
+    "price": 55.00,
+    "code": "BL007HIS",
+    "stock": 80,
+    "category": "Balones",
+    "thumbnails": ["url_imagen_balon_tango.jpg"],
+    "status": true
+  },
+  {
+    "title": "Malla de Conos para Agilidad (Set de 10)",
+    "description": "Set de 10 conos plásticos de alta visibilidad para ejercicios de agilidad y marcaje de campo.",
+    "price": 30.00,
+    "code": "CNO008AGL",
+    "stock": 150,
+    "category": "Entrenamiento",
+    "thumbnails": ["url_imagen_conos.jpg"],
+    "status": true
+  },
+  {
+    "title": "Bandera de Esquina Profesional",
+    "description": "Banderín de esquina reglamentario con poste flexible y base de peso para partidos oficiales.",
+    "price": 40.00,
+    "code": "BND009PFS",
+    "stock": 20,
+    "category": "Equipamiento",
+    "thumbnails": ["url_imagen_bandera_esquina.jpg"],
+    "status": true
+  },
+  {
+    "title": "Medias Antideslizantes Pro-Grip",
+    "description": "Medias técnicas con zonas de agarre de silicona para evitar el deslizamiento del pie dentro del botín.",
+    "price": 18.00,
+    "code": "MDS010GRIP",
+    "stock": 300,
+    "category": "Accesorios",
+    "thumbnails": ["url_imagen_medias_grip.jpg"],
+    "status": true
+  }]
