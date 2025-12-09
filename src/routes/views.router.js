@@ -1,18 +1,19 @@
 import { Router } from 'express'
-import ProductManager from '../ProductManager.js'
-import CartManager from '../CartManager.js';
+import ProductDAO from '../ProductDAO.js'
+import CartDAO from '../CartDAO.js';
 
 const router = Router();
-const productManager = new ProductManager('src/data/products.json');
-const cartManager = new CartManager('src/data/carts.json')
+const productDAO = new ProductDAO();
+const cartDAO = new CartDAO();
 
 router.get('/', async (req, res) => {
     try {
-        const products = await productManager.getProducts();
+        const productsData = await productDAO.getProducts({ limit: 100 });
+        const products = productsData && productsData.payload ? productsData.payload : [];
 
         res.render('home', {
             title: "Lista de Productos Estática",
-            products: products, 
+            products: products,
         });
     } catch (error) {
         console.error("Error al obtener productos para la vista home:", error);
@@ -23,11 +24,12 @@ router.get('/', async (req, res) => {
 
 router.get('/realtimeproducts', async (req, res) => {
     try {
-        const products = await productManager.getProducts();
+        const productsData = await productDAO.getProducts({ limit: 100 });
+        const products = productsData && productsData.payload ? productsData.payload : [];
 
         res.render('realTimeProducts', {
             title: "Productos en Tiempo Real",
-            products: products, 
+            products: products,
         });
     } catch (error) {
         console.error("Error al obtener productos para la vista realTimeProducts:", error);
@@ -38,7 +40,7 @@ router.get('/realtimeproducts', async (req, res) => {
 router.get('/carts/:cid', async (req, res) => {
     const { cid } = req.params;
     try {
-        const cart = await cartManager.getCartById(cid);
+        const cart = await cartDAO.getCartById(cid);
 
         if (!cart) {
             return res.status(404).render('error', {
@@ -48,8 +50,8 @@ router.get('/carts/:cid', async (req, res) => {
         }
         
         const productsWithDetails = await Promise.all(
-            cart.products.map(async (item) => {
-                const productDetail = await productManager.getProductById(item.product);
+            (cart.products || []).map(async (item) => {
+                const productDetail = await productDAO.getProductById(item.product);
                 return {
                     id: item.product,
                     quantity: item.quantity,
